@@ -1,0 +1,52 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+html{
+	font-size: 10px;
+	background: url('https://i.imgur.com/b9r5sEL.jpg') center bottom;
+	background-size: cover;
+}
+
+.keys{
+	min-height: 100vh;
+	display: flex;
+	flex:1;/*flex property sets the flexible length on flexible items*/
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.key{
+	margin-right:1rem;
+	border: .4rem solid black;
+	border-radius: .5rem;
+	text-align: center;
+	font-size: 1.5em;
+	width: 10rem;
+	padding: 1rem .5rem;
+	color:white;
+	background-color: rgba(0,0,0,0.4);
+	text-shadow: 0px 0px .5rem black;
+	transition: all .07s ease;/*The transition effect will start when the specified CSS property changes value*/
+}
+
+.playing{
+	transform:scale(1.1);/*The transform property applies a 2D or 3D transformation to an element. This property allows you to rotate, scale, move, skew, etc., elements.*/
+	border-color: #ffc600;
+ 	box-shadow: 0 0 1rem #ffc600;/*box-shadow property attaches one or more shadows to an element*/
+}
+
+.key kbd{
+	font-size: 4em;
+	display:block;
+}
+
+.sound{
+	text-transform: uppercase;
+	letter-spacing: .1rem;
+	font-size:1.2rem;
+  	color: #ffc600;
+}
