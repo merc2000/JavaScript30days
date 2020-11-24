@@ -19,7 +19,8 @@
 		const mhand=document.querySelector('.min-hand');
 		const shand=document.querySelector('.second-hand');
 		function setDate()
-		{const now = new Date();
+		{
+			const now = new Date();
 		
 		const sec=now.getSeconds();
 		const secDeg=((sec/60)*360)+90;
@@ -34,8 +35,9 @@
 		const hour=now.getHours();
 		const hourDeg=((hour/12)*360)+((min/60)*30)+90;
 		hhand.style.transform=`rotate(${hourDeg}deg)`;
+
 		}
-		setInterval(setDate,1000);
+		setInterval(setDate,1000);//repeats every second
 	</script>
 </body>
 </html>
