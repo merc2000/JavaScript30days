@@ -34,7 +34,7 @@
 
 	function handleUpdate(){
 		const suffix=this.dataset.sizing || "";
-		document.documentElement.style.setProperty(`--${this.name}`,this.value+suffix);
+		document.documentElement.style.setProperty(`--${this.name}`,this.value+suffix);//select the entire document and set property of spacing,blur and base
 	}
 
 	inputs.forEach(input => input.addEventListener('change',handleUpdate));
