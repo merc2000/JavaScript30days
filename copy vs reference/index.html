@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+</head>
+<body>
+
+  <script>
+    // start with strings, numbers and booleans
+    let age=20;
+    let age2 = age;
+    console.log(age,age2);
+
+    age=21;
+    console.log(age,age2);//once the value is set even if the value of age is changed it does not affect age2
+
+    // Let's say we have an array
+    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+    // and we want to make a copy of it.
+    const team=players;
+    console.log(players,team);
+
+    // You might think we can just do something like this:
+    team[3]='Lux';
+    console.log(team);
+
+    // however what happens when we update that array?
+
+    // now here is the problem!
+    console.log(players);
+    // oh no - we have edited the original array too!
+
+    // Why? It's because that is an array reference, not an array copy. They both point to the same array!
+
+    // So, how do we fix this? We take a copy instead!
+
+    // one way
+    let team2=players.slice();
+
+
+    // or create a new array and concat the old one in
+    let team3=[].concat(players);
+
+    // or use the new ES6 Spread
+    let team4=[...players];
+
+    let team5=Array.from(players);
+
+    // now when we update it, the original one isn't changed
+
+
+    // The same thing goes for objects, let's say we have a person object
+
+    // with Objects
+    const person = {
+      name: 'Wes Bos',
+      age: 80
+    };
+
+    // and think we make a copy:
+          //const captain=person;
+          //captain.number=99;
+
+    // how do we take a copy instead?
+    const captain=Object.assign({},person,{number:99,age:29});
+    console.log(person);
+
+    // object ...spread
+    const captain2={...person};
+    captain2.age=40;
+
+    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+    const mer={
+      name:'Merrin',
+      age:20,
+      social:{
+        github:'merc2000',
+        instagram:'mercthedev'
+      }
+    }
+
+    const dev=Object.assign({},mer);
+    dev.social.github='devgit';
+    console.log(mer);
+
+    //instead do like this or find a function for deep clone from the internet
+    const dev2=JSON.parse(JSON.stringify(wes));//JSON.stringify(wes) will convert it to a string and then we do JSON.parse() that will convert it to a object and forget all the references
+
+  </script>
+
+</body>
+</html>
