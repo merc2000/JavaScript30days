@@ -182,6 +182,37 @@
     </li>
   </ul>
 <script>
+  const timeNodes=Array.from(document.querySelectorAll('[data-time]'));//select anything with a data-time attribute on it
+
+  //timeNodes is a NodeList so we have to convert it into an array
+
+  const seconds = timeNodes.map(node => node.dataset.time)
+    .map((timeCode)=>{
+      const[mins,secs]=timeCode.split(':').map(parseFloat);
+      return (mins*60)+secs;
+    }).reduce((total,Vidseconds)=>total+Vidseconds);
+
+    //ES6 destructing const[mins,secs]=timeCode.split(':')
+
+    //split(':') will return an array that has string elements. so we convert it to numbers with parseFloat
+
+  
+
+  let secondsLeft = seconds;
+  const hours = Math.floor(secondsLeft/3600);
+  secondsLeft=secondsLeft%3600;
+
+  const mins=Math.floor(secondsLeft/60);
+  secondsLeft=secondsLeft%60;
+
+  console.log(hours,mins,secondsLeft);
+
+
+
 </script>
 </body>
 </html>
+
+<!--Map takes in an array and returns an array
+
+Reduce takes in an array and can return anything we want-->
