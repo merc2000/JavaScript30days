@@ -35,6 +35,50 @@
   const options = document.querySelectorAll('[type="range"], [name="text"]');
   const speakButton = document.querySelector('#speak');
   const stopButton = document.querySelector('#stop');
+  msg.text = document.querySelector('[name="text"]').value;
+
+  function populateVoices(){
+    voices = this.getVoices();
+    //now we want to loop over all these voices and set them as option in the dropdown
+    const voiceOption = voices
+      .filter(voice => voice.lang.includes('en'))
+      .map(voice=>`<option value="${voice.name}">${voice.name}(${voice.lang})</option>`)
+      .join('');
+
+    voicesDropdown.innerHTML = voiceOption;
+
+  }
+
+  function setVoice(){
+    msg.voice = voices.find(voice => voice.name === this.value);
+    toggle();
+  }
+
+  //define a function that restarts the applicatio every time voice is changed
+  function toggle(startOver = true){
+    speechSynthesis.cancel();
+    if(startOver){
+    speechSynthesis.speak(msg);}
+  }
+
+  function setOption(){
+    console.log(this.name,this.value);
+    msg[this.name] = this.value;
+    toggle();
+  }
+
+//speechSynthesis is a global variable
+speechSynthesis.addEventListener('voiceschanged',populateVoices);
+
+//when voice selected changes we call setVoice
+voicesDropdown.addEventListener('change',setVoice);
+
+options.forEach(option => option.addEventListener('change',setOption))
+
+speakButton.addEventListener('click',toggle);
+stopButton.addEventListener('click',()=>toggle(false));
+// another way to pass an argument to function stopButton.addEventListener('click',toggle.bind(null,false));
+
 </script>
 
 </body>
